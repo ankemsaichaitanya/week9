@@ -1,57 +1,25 @@
 pipeline {
-    agent any 
+    agent any
 
     stages {
-        stage('Build') {
+        stage('Clone Repo') {
             steps {
-                script {
-                    // Build your Docker image
-                    bat 'docker build -t my-kube3-chinna .'
-                }
+                echo "Repository cloned successfully"
             }
         }
-        stage('Test') {
-            steps {
-                script {
-                    // Run tests here if you have any
-                    echo 'Running tests...'
-                }
-            }
-        }
-        stage('Deploy') {
-            steps {
-                script {
-                    // Deploy your Docker image
-                    echo 'Deploying application...'
-                }
-            }
-        }
-    }
-}pipeline {
-    agent any 
 
-    stages {
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    // Build your Docker image
-                    bat 'docker build -t my-kube3-chinna .'
+                    sh 'docker build -t week9 .'
                 }
             }
         }
-        stage('Test') {
+
+        stage('Run Container') {
             steps {
                 script {
-                    // Run tests here if you have any
-                    echo 'Running tests...'
-                }
-            }
-        }
-        stage('Deploy') {
-            steps {
-                script {
-                    // Deploy your Docker image
-                    echo 'Deploying application...'
+                    sh 'docker run -d -p 3000:3000 week9'
                 }
             }
         }
