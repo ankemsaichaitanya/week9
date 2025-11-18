@@ -5,8 +5,8 @@ metadata:
 spec:
   type: LoadBalancer  # This exposes the service externally
   selector:
-    app: my-kube-app  # Must match the labels in the deployment
+    app: my-kube-app1  # Must match the labels in the deployment
   ports:
     - protocol: TCP
       port: 8082  # External port to access the app
-      targetPort: 3000  # Port on the container (Node.js app is listening here)
+      targetPort: 3001  # Port on the container (Node.js app is listening here)
