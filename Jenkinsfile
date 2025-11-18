@@ -10,17 +10,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    sh 'docker build -t week9 .'
-                }
+                bat 'docker build -t week9 .'
             }
         }
 
         stage('Run Container') {
             steps {
-                script {
-                    sh 'docker run -d -p 3000:3000 week9'
-                }
+                bat 'docker run -d -p 3000:3000 week9'
             }
         }
     }
