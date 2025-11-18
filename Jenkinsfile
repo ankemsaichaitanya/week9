@@ -2,20 +2,29 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repo') {
+
+        stage('Checkout') {
             steps {
-                echo "Repository cloned successfully"
+                echo "Checking out source code..."
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 bat 'docker build -t week9 .'
             }
         }
 
-        stage('Run Container') {
+        stage('Test') {
             steps {
+                echo "Running test script..."
+                bat 'echo No tests configured'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deploying container..."
                 bat 'docker run -d -p 3000:3000 week9'
             }
         }
